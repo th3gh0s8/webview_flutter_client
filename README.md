@@ -1,39 +1,16 @@
-# SK Lanka Holdings Mobile App
+# sklanka_app
 
-This is a cross-platform mobile application built with Flutter that displays your existing PHP web page in a native mobile app experience.
+A new Flutter project.
 
-## Features
+## Getting Started
 
-- **Splash Screen**: Professional splash screen with app branding
-- **WebView Integration**: Full display of your PHP web page with all functionality
-- **Cookie Support**: Maintains login sessions and user preferences
-- **Pull-to-Refresh**: Intuitive swipe-down to refresh the page
-- **Manual Refresh**: Refresh button in the app bar
-- **Cross-Platform**: Works on both Android and iOS devices
+This project is a starting point for a Flutter application.
 
-## Setup Instructions
+A few resources to get you started if this is your first Flutter project:
 
-1. **Configure Your PHP Website URL**:
-   - Open `lib/screens/webview_screen.dart`
-   - Update the `_webPageUrl` constant with your PHP website URL
+- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
+- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-2. **Customize App Branding**:
-   - Add your logo to `assets/images/`
-   - Update the splash screen in `lib/utils/splash_screen.dart`
-
-3. **Build the App**:
-   ```bash
-   flutter build apk        # For Android
-   flutter build ios        # For iOS
-   ```
-
-## Requirements
-
-- Flutter SDK
-- Access to your PHP web page
-
-For detailed instructions, see `MOBILE_APP_INSTRUCTIONS.md`.
-
-## Support
-
-For technical support or questions about the mobile app implementation, please refer to the `MOBILE_APP_INSTRUCTIONS.md` file or contact the development team.
+For help getting started with Flutter development, view the
+[online documentation](https://docs.flutter.dev/), which offers tutorials,
+samples, guidance on mobile development, and a full API reference.
