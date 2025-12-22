@@ -61,28 +61,17 @@ class _WebViewScreenState extends State<WebViewScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('SK Lanka Holdings'),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.refresh),
-            onPressed: _refreshPage,
-          ),
+    return SmartRefresher(
+      controller: _refreshController,
+      onRefresh: _refreshPage,
+      child: Stack(
+        children: [
+          WebViewWidget(controller: _controller),
+          if (_isLoading)
+            const Center(
+              child: CircularProgressIndicator(),
+            ),
         ],
-      ),
-      body: SmartRefresher(
-        controller: _refreshController,
-        onRefresh: _refreshPage,
-        child: Stack(
-          children: [
-            WebViewWidget(controller: _controller),
-            if (_isLoading)
-              const Center(
-                child: CircularProgressIndicator(),
-              ),
-          ],
-        ),
       ),
     );
   }
