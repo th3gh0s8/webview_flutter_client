@@ -23,26 +23,35 @@ class _WebViewScreenState extends State<WebViewScreen> {
   void initState() {
     super.initState();
 
-    _controller = WebViewController()
-      ..setJavaScriptMode(JavaScriptMode.unrestricted)
-      ..setNavigationDelegate(
-        NavigationDelegate(
-          onPageStarted: (String url) {
-            setState(() {
-              _isLoading = true;
-            });
-          },
-          onPageFinished: (String url) {
-            setState(() {
-              _isLoading = false;
-            });
-          },
-          onWebResourceError: (WebResourceError error) {
-            debugPrint('Web resource error: ${error.description}');
-          },
-        ),
-      )
-      ..loadRequest(Uri.parse(_webPageUrl));
+    _controller = WebViewController();
+
+    // Platform-specific configurations
+    if (!kIsWeb) {
+      _controller
+        ..setJavaScriptMode(JavaScriptMode.unrestricted)
+        ..setNavigationDelegate(
+          NavigationDelegate(
+            onPageStarted: (String url) {
+              setState(() {
+                _isLoading = true;
+              });
+            },
+            onPageFinished: (String url) {
+              setState(() {
+                _isLoading = false;
+              });
+            },
+            onWebResourceError: (WebResourceError error) {
+              debugPrint('Web resource error: ${error.description}');
+            },
+          ),
+        );
+    } else {
+      // On web, we can't easily track loading state, so we'll just hide the indicator.
+      _isLoading = false;
+    }
+
+    _controller.loadRequest(Uri.parse(_webPageUrl));
   }
 
   Future<void> _refreshPage() async {
