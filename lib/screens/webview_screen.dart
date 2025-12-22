@@ -23,10 +23,9 @@ class _WebViewScreenState extends State<WebViewScreen> {
   void initState() {
     super.initState();
 
-    _controller = WebViewController();
-
-    if (!kIsWeb) {
-      _controller.setNavigationDelegate(
+    _controller = WebViewController()
+      ..setJavaScriptMode(JavaScriptMode.unrestricted)
+      ..setNavigationDelegate(
         NavigationDelegate(
           onPageStarted: (String url) {
             setState(() {
@@ -42,12 +41,8 @@ class _WebViewScreenState extends State<WebViewScreen> {
             debugPrint('Web resource error: ${error.description}');
           },
         ),
-      );
-    } else {
-      _isLoading = false;
-    }
-
-    _controller.loadRequest(Uri.parse(_webPageUrl));
+      )
+      ..loadRequest(Uri.parse(_webPageUrl));
   }
 
   Future<void> _refreshPage() async {
