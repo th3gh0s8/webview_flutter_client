@@ -1,0 +1,33 @@
+name: sklanka_app
+description: "A new Flutter project."
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.10.4 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.8
+  shared_preferences: ^2.2.3
+  pull_to_refresh: ^2.0.0
+
+  # Core WebView plugin and platform implementations for auto-registration
+  webview_flutter: ^4.7.0
+  webview_flutter_android: ^3.15.0
+  webview_flutter_wkwebview: ^3.12.0 # For iOS
+  webview_windows: ^0.4.0 # Using version suggested by your build tool
+  webview_flutter_web: ^0.2.3+4 # For Web
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/
