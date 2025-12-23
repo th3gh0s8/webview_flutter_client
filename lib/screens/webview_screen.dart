@@ -14,7 +14,6 @@ class WebViewScreen extends StatefulWidget {
 
 class _WebViewScreenState extends State<WebViewScreen> {
   late final WebViewController _controller;
-  bool _isLoading = true;
   bool _isConnected = true; // Assume connected initially
   StreamSubscription<List<ConnectivityResult>>? _connectivitySubscription;
 
@@ -52,12 +51,6 @@ class _WebViewScreenState extends State<WebViewScreen> {
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
       ..setNavigationDelegate(
         NavigationDelegate(
-          onPageStarted: (String url) {
-            if (mounted) setState(() => _isLoading = true);
-          },
-          onPageFinished: (String url) {
-            if (mounted) setState(() => _isLoading = false);
-          },
           onWebResourceError: (WebResourceError error) {
             debugPrint('Page resource error: ${error.description}');
           },
@@ -89,11 +82,6 @@ class _WebViewScreenState extends State<WebViewScreen> {
         children: [
           if (_isConnected)
             WebViewWidget(controller: _controller),
-          
-          if (_isLoading && _isConnected)
-            const Center(
-              child: CircularProgressIndicator(),
-            ),
 
           NetworkStatusBanner(
             isConnected: _isConnected,
