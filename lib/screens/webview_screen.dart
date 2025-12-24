@@ -1,7 +1,5 @@
 import 'dart:async';
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -18,6 +16,7 @@ class _WebViewScreenState extends State<WebViewScreen> {
   late final WebViewController _controller;
   bool _isConnected = true; // Assume connected initially
   StreamSubscription<List<ConnectivityResult>>? _connectivitySubscription;
+  bool _isRefreshing = false;
 
   static const String _webPageUrl = 'https://sklanka.lk/';
 
@@ -61,7 +60,7 @@ class _WebViewScreenState extends State<WebViewScreen> {
           },
         ),
       )
-      ..setBackgroundColor(const Color(0x00000000)); // Set background to be transparent
+      ..setBackgroundColor(const Color(0x00000000));
 
     if (_isConnected) {
       _controller.loadRequest(Uri.parse(_webPageUrl));
@@ -74,18 +73,27 @@ class _WebViewScreenState extends State<WebViewScreen> {
     super.dispose();
   }
 
+  Future<void> _refreshPage() async {
+    setState(() {
+      _isRefreshing = true;
+    });
+
+    await _controller.reload();
+
+    if (mounted) {
+      setState(() {
+        _isRefreshing = false;
+      });
+    }
+  }
+
   Future<void> _retry() async {
     final connectivityResult = await Connectivity().checkConnectivity();
     _updateConnectionStatus(connectivityResult);
   }
 
-  Future<void> _handleRefresh() {
-    return _controller.reload();
-  }
-
   @override
   Widget build(BuildContext context) {
-    // Ensure status bar icons are visible on light background
     SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(
         statusBarIconBrightness: Brightness.dark,
@@ -97,16 +105,49 @@ class _WebViewScreenState extends State<WebViewScreen> {
       backgroundColor: Colors.white,
       body: SafeArea(
         child: _isConnected
-            ? RefreshIndicator(
-                onRefresh: _handleRefresh,
-                child: WebViewWidget(
-                  controller: _controller,
-                  gestureRecognizers: const <Factory<OneSequenceGestureRecognizer>>{
-                    Factory<VerticalDragGestureRecognizer>(
-                      VerticalDragGestureRecognizer.new,
+            ? Stack(
+                children: [
+                  // Main WebView
+                  WebViewWidget(
+                    controller: _controller,
+                  ),
+                  // Transparent overlay for pull gesture detection (only at the top)
+                  Positioned(
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    height: 200, // Increased height for easier detection
+                    child: Listener(
+                      onPointerMove: (pointerEvent) {
+                        // Only trigger when moving downward from the top area
+                        if (pointerEvent.delta.dy > 15 &&
+                            pointerEvent.position.dy < 200 &&
+                            !_isRefreshing) {
+                          _refreshPage();
+                        }
+                      },
+                      child: Container(
+                        color: Colors.transparent,
+                      ),
                     ),
-                  },
-                ),
+                  ),
+                  // Custom pull-to-refresh indicator
+                  if (_isRefreshing)
+                    Positioned(
+                      top: 30,
+                      left: MediaQuery.of(context).size.width / 2 - 25,
+                      child: Container(
+                        padding: const EdgeInsets.all(8.0),
+                        decoration: BoxDecoration(
+                          color: Colors.grey[800],
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: const CircularProgressIndicator(
+                          valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                        ),
+                      ),
+                    ),
+                ],
               )
             : Center(
                 child: NetworkStatusBanner(

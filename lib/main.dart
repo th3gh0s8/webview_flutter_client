@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'utils/splash_screen.dart';
+import 'package:sklanka_app/utils/splash_screen.dart'; // Corrected import path
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,7 +17,7 @@ class SklankaApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: const SplashScreen(),
+      home: const SplashScreen(), // Reverted to your original splash screen
     );
   }
 }
