@@ -45,7 +45,6 @@ class _WebViewScreenState extends State<WebViewScreen> {
       setState(() {
         _isConnected = isNowConnected;
       });
-      // Only reload if we just reconnected
       if (isNowConnected && !wasConnected) {
         _controller.reload();
       }
@@ -61,7 +60,8 @@ class _WebViewScreenState extends State<WebViewScreen> {
             debugPrint('Page resource error: ${error.description}');
           },
         ),
-      );
+      )
+      ..setBackgroundColor(const Color(0x00000000)); // Set background to be transparent
 
     if (_isConnected) {
       _controller.loadRequest(Uri.parse(_webPageUrl));
@@ -79,46 +79,41 @@ class _WebViewScreenState extends State<WebViewScreen> {
     _updateConnectionStatus(connectivityResult);
   }
 
-  Future<void> _handleRefresh() async {
-    // Use a completer to ensure the Future from onRefresh completes
-    final Completer<void> completer = Completer<void>();
-    await _controller.reload();
-    completer.complete();
-    return completer.future;
+  Future<void> _handleRefresh() {
+    return _controller.reload();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent, // Make status bar background transparent
-        elevation: 0,
-        systemOverlayStyle: const SystemUiOverlayStyle(
-          statusBarIconBrightness: Brightness.dark, // Use dark icons for status bar
-        ),
-        toolbarHeight: 0, // Only color the status bar area
+    // Ensure status bar icons are visible on light background
+    SystemChrome.setSystemUIOverlayStyle(
+      const SystemUiOverlayStyle(
+        statusBarIconBrightness: Brightness.dark,
+        statusBarColor: Colors.transparent,
       ),
+    );
+
+    return Scaffold(
+      backgroundColor: Colors.white,
       body: SafeArea(
-        top: true,
         child: _isConnected
             ? RefreshIndicator(
-          onRefresh: _handleRefresh,
-          child: WebViewWidget(
-            controller: _controller,
-            // This allows both the webview and the RefreshIndicator to recognize vertical drags
-            gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{
-              Factory<VerticalDragGestureRecognizer>(
-                    () => VerticalDragGestureRecognizer(),
-              ),
-            },
-          ),
-        )
+                onRefresh: _handleRefresh,
+                child: WebViewWidget(
+                  controller: _controller,
+                  gestureRecognizers: const <Factory<OneSequenceGestureRecognizer>>{
+                    Factory<VerticalDragGestureRecognizer>(
+                      VerticalDragGestureRecognizer.new,
+                    ),
+                  },
+                ),
+              )
             : Center(
-          child: NetworkStatusBanner(
-            isConnected: _isConnected,
-            onRetry: _retry,
-          ),
-        ),
+                child: NetworkStatusBanner(
+                  isConnected: _isConnected,
+                  onRetry: _retry,
+                ),
+              ),
       ),
     );
   }
