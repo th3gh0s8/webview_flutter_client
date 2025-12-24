@@ -74,6 +74,11 @@ class _WebViewScreenState extends State<WebViewScreen> {
     _updateConnectionStatus(connectivityResult);
   }
 
+  Future<void> _handleRefresh() async {
+    debugPrint("--- PULL TO REFRESH TRIGGERED ---");
+    return _controller.reload();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -81,8 +86,23 @@ class _WebViewScreenState extends State<WebViewScreen> {
         alignment: Alignment.center,
         children: [
           if (_isConnected)
-            WebViewWidget(controller: _controller),
-
+            RefreshIndicator(
+              onRefresh: _handleRefresh,
+              child: LayoutBuilder(builder: (context, constraints) {
+                return ListView(
+                  padding: EdgeInsets.zero,
+                  physics: const AlwaysScrollableScrollPhysics(),
+                  children: [
+                    SizedBox(
+                      height: constraints.maxHeight,
+                      child: WebViewWidget(
+                        controller: _controller,
+                      ),
+                    ),
+                  ],
+                );
+              }),
+            ),
           NetworkStatusBanner(
             isConnected: _isConnected,
             onRetry: _retry,
