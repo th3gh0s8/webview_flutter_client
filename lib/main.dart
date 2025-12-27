@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sklanka_app/utils/splash_screen.dart'; // Corrected import path
+import 'package:sklanka_app/screens/webview_screen.dart'; // Import WebViewScreen
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,7 +17,7 @@ class SklankaApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: const SplashScreen(), // Reverted to your original splash screen
+      home: const WebViewScreen(), // Set WebViewScreen as home
     );
   }
 }
