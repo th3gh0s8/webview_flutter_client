@@ -18,7 +18,7 @@ class _WebViewScreenState extends State<WebViewScreen> {
   StreamSubscription<List<ConnectivityResult>>? _connectivitySubscription;
   bool _isRefreshing = false;
 
-  static const String _webPageUrl = 'https://sklanka.lk/';
+  static const String _webPageUrl = 'https://ncclanka.lk/'; // Changed URL
 
   @override
   void initState() {

@@ -1,11 +1,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.powersoft.sklanka_app">
+    package="com.powersoft.ncclanka_app">
 
     <!-- ✅ Permissions MUST be here -->
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
-        android:label="Sklanka App"
+        android:label="NCC Lanka"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher"
         android:usesCleartextTraffic="true">
