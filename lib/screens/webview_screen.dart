@@ -16,9 +16,8 @@ class _WebViewScreenState extends State<WebViewScreen> {
   late final WebViewController _controller;
   bool _isConnected = true; // Assume connected initially
   StreamSubscription<List<ConnectivityResult>>? _connectivitySubscription;
-  bool _isRefreshing = false;
 
-  static const String _webPageUrl = 'https://ncclanka.lk/'; // Changed URL
+  static const String _webPageUrl = 'https://ncclanka.lk/';
 
   @override
   void initState() {
@@ -55,8 +54,20 @@ class _WebViewScreenState extends State<WebViewScreen> {
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
       ..setNavigationDelegate(
         NavigationDelegate(
+          onProgress: (int progress) {},
+          onPageStarted: (String url) {},
+          onPageFinished: (String url) {},
           onWebResourceError: (WebResourceError error) {
             debugPrint('Page resource error: ${error.description}');
+          },
+          onNavigationRequest: (NavigationRequest request) {
+            final Uri uri = Uri.parse(request.url);
+            // Allow navigation to any page within the ncclanka.lk domain
+            if (uri.host == 'ncclanka.lk' || uri.host.endsWith('.ncclanka.lk')) {
+              return NavigationDecision.navigate;
+            }
+            // Prevent navigation to all other domains
+            return NavigationDecision.prevent;
           },
         ),
       )
@@ -71,20 +82,6 @@ class _WebViewScreenState extends State<WebViewScreen> {
   void dispose() {
     _connectivitySubscription?.cancel();
     super.dispose();
-  }
-
-  Future<void> _refreshPage() async {
-    setState(() {
-      _isRefreshing = true;
-    });
-
-    await _controller.reload();
-
-    if (mounted) {
-      setState(() {
-        _isRefreshing = false;
-      });
-    }
   }
 
   Future<void> _retry() async {
@@ -105,49 +102,8 @@ class _WebViewScreenState extends State<WebViewScreen> {
       backgroundColor: Colors.white,
       body: SafeArea(
         child: _isConnected
-            ? Stack(
-                children: [
-                  // Main WebView
-                  WebViewWidget(
-                    controller: _controller,
-                  ),
-                  // Transparent overlay for pull gesture detection (only at the top)
-                  Positioned(
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    height: 200, // Increased height for easier detection
-                    child: Listener(
-                      onPointerMove: (pointerEvent) {
-                        // Only trigger when moving downward from the top area
-                        if (pointerEvent.delta.dy > 15 &&
-                            pointerEvent.position.dy < 200 &&
-                            !_isRefreshing) {
-                          _refreshPage();
-                        }
-                      },
-                      child: Container(
-                        color: Colors.transparent,
-                      ),
-                    ),
-                  ),
-                  // Custom pull-to-refresh indicator
-                  if (_isRefreshing)
-                    Positioned(
-                      top: 30,
-                      left: MediaQuery.of(context).size.width / 2 - 25,
-                      child: Container(
-                        padding: const EdgeInsets.all(8.0),
-                        decoration: BoxDecoration(
-                          color: Colors.grey[800],
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: const CircularProgressIndicator(
-                          valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-                        ),
-                      ),
-                    ),
-                ],
+            ? WebViewWidget(
+                controller: _controller,
               )
             : Center(
                 child: NetworkStatusBanner(
