@@ -17,7 +17,7 @@ class _WebViewScreenState extends State<WebViewScreen> {
   bool _isConnected = true; // Assume connected initially
   StreamSubscription<List<ConnectivityResult>>? _connectivitySubscription;
 
-  static const String _webPageUrl = 'https://ncclanka.lk/';
+  static const String _webPageUrl = 'http://aurexdrive.com/';
 
   @override
   void initState() {
@@ -62,11 +62,9 @@ class _WebViewScreenState extends State<WebViewScreen> {
           },
           onNavigationRequest: (NavigationRequest request) {
             final Uri uri = Uri.parse(request.url);
-            // Allow navigation to any page within the ncclanka.lk domain
-            if (uri.host == 'ncclanka.lk' || uri.host.endsWith('.ncclanka.lk')) {
+            if (uri.host == 'aurexdrive.com' || uri.host.endsWith('.aurexdrive.com')) {
               return NavigationDecision.navigate;
             }
-            // Prevent navigation to all other domains
             return NavigationDecision.prevent;
           },
         ),

@@ -1,4 +1,4 @@
-package com.powersoft.ncclanka_app
+package com.powersoft.aurexdrive
 
 import io.flutter.embedding.android.FlutterActivity
 
