@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sklanka_app/utils/splash_screen.dart'; // Make sure this path is correct
+import 'package:sklanka_app/utils/splash_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -13,12 +13,12 @@ class SklankaApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'SK Lanka',
+      title: 'Pettah Computers',
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: const SplashScreen(), // Reverted to show SplashScreen first
+      home: const SplashScreen(), // Corrected to show splash screen first
     );
   }
 }
