@@ -33,7 +33,7 @@ dev_dependencies:
 flutter_launcher_icons:
   android: "ic_launcher"
   ios: true
-  image_path: "assets/images/skLanka_logo_1_976_58.png"
+  image_path: "assets/images/pettahcomputers_logo_1_217_51.png"
 
 flutter:
   uses-material-design: true
