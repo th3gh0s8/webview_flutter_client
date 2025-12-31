@@ -17,7 +17,7 @@ class _WebViewScreenState extends State<WebViewScreen> {
   bool _isConnected = true; // Assume connected initially
   StreamSubscription<List<ConnectivityResult>>? _connectivitySubscription;
 
-  static const String _webPageUrl = 'http://aurexdrive.com/';
+  static const String _webPageUrl = 'http://pettahcomputers.com/';
 
   @override
   void initState() {
@@ -54,22 +54,15 @@ class _WebViewScreenState extends State<WebViewScreen> {
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
       ..setNavigationDelegate(
         NavigationDelegate(
-          onProgress: (int progress) {},
-          onPageStarted: (String url) {},
-          onPageFinished: (String url) {},
-          onWebResourceError: (WebResourceError error) {
-            debugPrint('Page resource error: ${error.description}');
-          },
           onNavigationRequest: (NavigationRequest request) {
             final Uri uri = Uri.parse(request.url);
-            if (uri.host == 'aurexdrive.com' || uri.host.endsWith('.aurexdrive.com')) {
+            if (uri.host == 'pettahcomputers.com' || uri.host.endsWith('.pettahcomputers.com')) {
               return NavigationDecision.navigate;
             }
             return NavigationDecision.prevent;
           },
         ),
-      )
-      ..setBackgroundColor(const Color(0x00000000));
+      );
 
     if (_isConnected) {
       _controller.loadRequest(Uri.parse(_webPageUrl));

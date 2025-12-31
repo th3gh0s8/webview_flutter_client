@@ -1,4 +1,4 @@
-package com.powersoft.aurexdrive
+package com.powersoft.pettahcomputers
 
 import io.flutter.embedding.android.FlutterActivity
 
