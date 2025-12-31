@@ -1,4 +1,4 @@
-package com.powersoft.pettahcomputers
+package com.powersoft.sklankaholdings
 
 import io.flutter.embedding.android.FlutterActivity
 

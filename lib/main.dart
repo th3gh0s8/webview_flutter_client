@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sklanka_app/screens/webview_screen.dart'; // Import WebViewScreen
+import 'package:sklanka_app/utils/splash_screen.dart'; // Make sure this path is correct
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -12,12 +12,13 @@ class SklankaApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Pettah Computers',
+      debugShowCheckedModeBanner: false,
+      title: 'SK Lanka',
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: const WebViewScreen(), // Set WebViewScreen as home
+      home: const SplashScreen(), // Reverted to show SplashScreen first
     );
   }
 }

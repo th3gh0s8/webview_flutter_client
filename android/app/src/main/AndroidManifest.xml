@@ -1,11 +1,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.powersoft.pettahcomputers">
+    package="com.powersoft.sklankaholdings">
 
     <!-- ✅ Permissions MUST be here -->
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
-        android:label="Pettah Computers"
+        android:label="SK Lanka"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher"
         android:usesCleartextTraffic="true">
