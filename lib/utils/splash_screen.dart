@@ -56,7 +56,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
             children: [
               // Local asset logo
               Image.asset(
-                'assets/images/pettahcomputers_logo_1_217_51.png',
+                'assets/images/ncc_logo_1_485_46.png',
                 width: 200,
                 height: 200,
               ),
