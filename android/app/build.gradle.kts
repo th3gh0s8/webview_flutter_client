@@ -16,12 +16,12 @@ if (keystorePropertiesFile.exists()) {
 }
 
 android {
-    namespace = "com.powersoft.pettahcomputers"
+    namespace = "com.powersoft.ncclanka_app"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
     defaultConfig {
-        applicationId = "com.powersoft.pettahcomputers"
+        applicationId = "com.powersoft.ncclanka_app"
         minSdk = flutter.minSdkVersion
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode

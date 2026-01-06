@@ -13,12 +13,12 @@ class SklankaApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Pettah Computers',
+      title: 'NCC Lanka',
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: const SplashScreen(), // Corrected to show splash screen first
+      home: const SplashScreen(), 
     );
   }
 }
