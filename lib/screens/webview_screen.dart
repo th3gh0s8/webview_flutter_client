@@ -17,7 +17,7 @@ class _WebViewScreenState extends State<WebViewScreen> {
   bool _isConnected = true; // Assume connected initially
   StreamSubscription<List<ConnectivityResult>>? _connectivitySubscription;
 
-  static const String _webPageUrl = 'https://pettahcomputers.com/';
+  static const String _webPageUrl = 'https://ncclanka.lk/';
 
   @override
   void initState() {
@@ -56,7 +56,7 @@ class _WebViewScreenState extends State<WebViewScreen> {
         NavigationDelegate(
           onNavigationRequest: (NavigationRequest request) {
             final Uri uri = Uri.parse(request.url);
-            if (uri.host == 'pettahcomputers.com' || uri.host.endsWith('.pettahcomputers.com')) {
+            if (uri.host == 'ncclanka.lk' || uri.host.endsWith('.ncclanka.lk')) {
               return NavigationDecision.navigate;
             }
             return NavigationDecision.prevent;
