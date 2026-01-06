@@ -17,7 +17,7 @@ class _WebViewScreenState extends State<WebViewScreen> {
   bool _isConnected = true; // Assume connected initially
   StreamSubscription<List<ConnectivityResult>>? _connectivitySubscription;
 
-  static const String _webPageUrl = 'http://ncclanka.lk/';
+  static const String _webPageUrl = 'https://ncclanka.lk/';
 
   @override
   void initState() {
