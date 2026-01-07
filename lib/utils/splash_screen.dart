@@ -47,7 +47,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.black, // Changed background to black
       body: Center(
         child: FadeTransition(
           opacity: _animation,
@@ -56,9 +56,9 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
             children: [
               // Local asset logo
               Image.asset(
-                'assets/images/ncc_logo_1_485_46.png',
-                width: 200,
-                height: 200,
+                'assets/images/AsDr_logo.png',
+                width: 250, // Adjusted size for better fit
+                height: 250,
               ),
             ],
           ),
