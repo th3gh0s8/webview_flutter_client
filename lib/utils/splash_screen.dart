@@ -47,7 +47,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black, // Changed background to black
+      backgroundColor: Colors.white, // Changed background to white for the new logo
       body: Center(
         child: FadeTransition(
           opacity: _animation,
@@ -56,8 +56,8 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
             children: [
               // Local asset logo
               Image.asset(
-                'assets/images/AsDr_logo.png',
-                width: 250, // Adjusted size for better fit
+                'assets/images/babyisland-logo.jpg',
+                width: 250,
                 height: 250,
               ),
             ],
