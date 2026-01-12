@@ -17,7 +17,7 @@ class _WebViewScreenState extends State<WebViewScreen> {
   bool _isConnected = true; // Assume connected initially
   StreamSubscription<List<ConnectivityResult>>? _connectivitySubscription;
 
-  static const String _webPageUrl = 'https://aurexdrive.com/';
+  static const String _webPageUrl = 'https://babyisland.lk/';
 
   @override
   void initState() {
@@ -56,7 +56,7 @@ class _WebViewScreenState extends State<WebViewScreen> {
         NavigationDelegate(
           onNavigationRequest: (NavigationRequest request) {
             final Uri uri = Uri.parse(request.url);
-            if (uri.host == 'aurexdrive.com' || uri.host.endsWith('.aurexdrive.com')) {
+            if (uri.host == 'babyisland.lk' || uri.host.endsWith('.babyisland.lk')) {
               return NavigationDecision.navigate;
             }
             return NavigationDecision.prevent;
