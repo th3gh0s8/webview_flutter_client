@@ -30,7 +30,6 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
   }
 
   Future<void> _navigateToHome() async {
-    // Wait for the animation or desired delay
     await Future.delayed(const Duration(seconds: 3));
     
     // Remove the native splash screen
@@ -62,8 +61,9 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
             children: [
               Image.asset(
                 'assets/images/naleems_logo.png',
-                width: 250,
-                height: 250,
+                width: 70, 
+                height: 91,
+                fit: BoxFit.contain,
               ),
             ],
           ),
