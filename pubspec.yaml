@@ -1,5 +1,5 @@
-name: sklanka_app
-description: "A new Flutter project."
+name: naleemiah_erp
+description: "Naleemiah ERP WebView App"
 publish_to: 'none'
 
 version: 1.0.0+1
@@ -33,7 +33,7 @@ dev_dependencies:
 flutter_launcher_icons:
   android: "ic_launcher"
   ios: true
-  image_path: "assets/images/babyisland-logo.jpg"
+  image_path: "assets/images/naleems_logo.png"
 
 flutter:
   uses-material-design: true

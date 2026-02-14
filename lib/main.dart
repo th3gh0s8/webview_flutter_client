@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:sklanka_app/utils/splash_screen.dart';
+import 'package:naleemiah_erp/utils/splash_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(const SklankaApp());
+  runApp(const NaleemiahErpApp());
 }
 
-class SklankaApp extends StatelessWidget {
-  const SklankaApp({super.key});
+class NaleemiahErpApp extends StatelessWidget {
+  const NaleemiahErpApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Baby Island',
+      title: 'Naleemiah ERP',
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,

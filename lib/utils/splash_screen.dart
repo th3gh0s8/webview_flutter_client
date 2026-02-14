@@ -56,7 +56,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
             children: [
               // Local asset logo
               Image.asset(
-                'assets/images/babyisland-logo.jpg',
+                'assets/images/naleems_logo.png',
                 width: 250,
                 height: 250,
               ),
