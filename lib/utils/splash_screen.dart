@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import '../screens/webview_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -29,7 +30,11 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
   }
 
   Future<void> _navigateToHome() async {
-    await Future.delayed(const Duration(seconds: 3)); // Keep a 3-second delay
+    await Future.delayed(const Duration(seconds: 3));
+    
+    // Remove the native splash screen
+    FlutterNativeSplash.remove();
+
     if (mounted) {
       Navigator.pushReplacement(
         context,
@@ -47,18 +52,18 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white, // Changed background to white for the new logo
+      backgroundColor: Colors.white,
       body: Center(
         child: FadeTransition(
           opacity: _animation,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // Local asset logo
               Image.asset(
-                'assets/images/babyisland-logo.jpg',
-                width: 250,
-                height: 250,
+                'assets/images/naleems_logo.png',
+                width: 70, 
+                height: 91,
+                fit: BoxFit.contain,
               ),
             ],
           ),

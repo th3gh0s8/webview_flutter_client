@@ -1,5 +1,5 @@
-name: sklanka_app
-description: "A new Flutter project."
+name: naleemiah_erp
+description: "Naleemiah ERP WebView App"
 publish_to: 'none'
 
 version: 1.0.0+1
@@ -29,11 +29,20 @@ dev_dependencies:
     sdk: flutter
   flutter_lints: ^6.0.0
   flutter_launcher_icons: "^0.13.1"
+  flutter_native_splash: ^2.4.0
 
 flutter_launcher_icons:
   android: "ic_launcher"
   ios: true
-  image_path: "assets/images/babyisland-logo.jpg"
+  image_path: "assets/images/naleems_logo.png"
+  adaptive_icon_background: "#ffffff"
+  adaptive_icon_foreground: "assets/images/naleems_logo.png"
+
+flutter_native_splash:
+  color: "#ffffff"
+  image: assets/images/naleems_logo.png
+  android_12:
+    image: assets/images/naleems_logo.png
 
 flutter:
   uses-material-design: true

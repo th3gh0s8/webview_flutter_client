@@ -1,11 +1,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.powersoft.babyisland">
+    package="com.powersoft.naleemiaherp">
 
     <!-- ✅ Permissions MUST be here -->
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
-        android:label="Baby Island"
+        android:label="Naleemiah ERP"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher"
         android:usesCleartextTraffic="true">

@@ -1,11 +1,11 @@
 {
-    "name": "sklanka_app",
-    "short_name": "sklanka_app",
+    "name": "Naleemiah ERP",
+    "short_name": "Naleemiah ERP",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "Naleemiah ERP WebView App",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
