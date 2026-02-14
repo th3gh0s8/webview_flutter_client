@@ -10,7 +10,8 @@ plugins {
 
 // Load keystore properties
 val keystoreProperties = Properties()
-val keystorePropertiesFile = rootProject.file("key.properties")
+// Pointing to your existing properties file in the 'kotlin' folder
+val keystorePropertiesFile = rootProject.file("../kotlin/new.properties")
 if (keystorePropertiesFile.exists()) {
     keystoreProperties.load(FileInputStream(keystorePropertiesFile))
 }
@@ -32,7 +33,18 @@ android {
         create("release") {
             keyAlias = keystoreProperties["keyAlias"] as? String
             keyPassword = keystoreProperties["keyPassword"] as? String
-            storeFile = (keystoreProperties["storeFile"] as? String)?.let { file(it) }
+            val storeFileProperty = keystoreProperties["storeFile"] as? String
+            storeFile = if (storeFileProperty != null) {
+                // Pointing to the JKS file which is in the android folder
+                val keystoreFile = rootProject.file(storeFileProperty)
+                if (keystoreFile.exists()) {
+                    keystoreFile
+                } else {
+                    file(storeFileProperty)
+                }
+            } else {
+                null
+            }
             storePassword = keystoreProperties["storePassword"] as? String
         }
     }
