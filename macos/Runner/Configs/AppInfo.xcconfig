@@ -8,7 +8,7 @@
 PRODUCT_NAME = sklanka_app
 
 // The application's bundle identifier
-PRODUCT_BUNDLE_IDENTIFIER = com.powersoft.sklanka_app
+PRODUCT_BUNDLE_IDENTIFIER = com.powersoft.sklankaholdings
 
 // The copyright displayed in application information
-PRODUCT_COPYRIGHT = Copyright © 2025 com.powersoft.sklanka_app. All rights reserved.
+PRODUCT_COPYRIGHT = Copyright © 2026 com.powersoft.sklankaholdings. All rights reserved.
