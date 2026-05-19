@@ -57,8 +57,8 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
               // Local asset logo
               Image.asset(
                 'assets/images/ncc_logo_1_485_46.png',
-                width: 200,
-                height: 200,
+                width: 300,
+                fit: BoxFit.contain,
               ),
             ],
           ),
